@@ -15,5 +15,9 @@ Journal of The Royal Society Interface. [DOI pending]
 ## Code Requirements
 Python 3.8+ with packages listed in requirements.txt
 
+## Usage
+Open and run `Entropy Analysis.ipynb` to reproduce all analyses and figures.
+All data is embedded within the notebook for convenience.
+
 ## License
 MIT License - See LICENSE file for details

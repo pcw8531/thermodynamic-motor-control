@@ -1,38 +1,143 @@
 # Thermodynamic Entropy Management in Human Motor Control
 
-This repository contains data and analysis code for the manuscript:
-"Thermodynamic Entropy Management in Human Motor Control Across Circadian and Thermal Challenges"
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Overview
+
+This repository contains data and analysis code for the study:
+
+**Park, C. (2025). Thermodynamic Entropy Management in Human Motor Control Across Circadian and Thermal Challenges. *Journal of The Royal Society Interface*. [DOI pending]**
+
+The study demonstrates that human motor control operates according to thermodynamic principles, managing entropy distribution to maintain functional stability—analogous to how refrigerators achieve local cooling through global heating.
+
+## Repository Structure
+
+```
+/thermodynamic-motor-control/
+├── README.md                        # This file
+├── LICENSE                          # MIT license
+├── Entropy Analysis.ipynb           # Complete analysis with embedded data
+├── cwa17w1.ipynb                    # Bimanual coordination phase calculations
+├── cwa17w1.txt                      # Sample raw pendulum position data
+├── experimental_data_complete.csv   # Complete experimental dataset (Tables S1-S3)
+├── requirements.txt                 # Python package dependencies
+└── .gitignore                       # Standard Python gitignore
+```
+
+## Data Files
+
+### Primary Analysis Notebook
+**Entropy Analysis.ipynb** contains the complete analysis pipeline with embedded data:
+- Shannon entropy calculations: H(φ) = -Σ pᵢ log₂ pᵢ
+- Individual participant visualizations across circadian cycles
+- Thermal perturbation response patterns
+- Statistical comparisons and interaction effects
+
+### Experimental Data
+**experimental_data_complete.csv** provides the complete dataset from all three experiments:
+
+| Column | Description |
+|--------|-------------|
+| `Experiment` | Experiment identifier (Exp1_Circadian, Exp2_Heat, Exp3_Cold) |
+| `Participant` | Participant ID (P1-P8) |
+| `Group` | Experimental group (1 = circadian only, 2 = thermal perturbation) |
+| `Circadian_Time` | Time of measurement (05:00, 12:00, 17:00, 00:00) |
+| `Condition` | Temperature condition (Normal, Heat, Cold) |
+| `Entropy_H_phi` | Shannon entropy H(φ) or normalized Z-score |
+| `Core_Temp_Celsius` | Core body temperature (°C) - Exp1 only |
+| `Note` | Data source reference (Table S1, S2, or S3) |
+
+**Data Summary:**
+- **Experiment 1 (Circadian):** 8 participants × 4 time points = 32 records with entropy and temperature
+- **Experiment 2 (Heat):** 8 participants × 2 times × 2 conditions = 32 records (Z-scores)
+- **Experiment 3 (Cold):** 8 participants × 2 times × 2 conditions = 32 records (Z-scores)
+
+### Raw Movement Data
+**cwa17w1.txt** contains sample raw pendulum position time-series:
+- Sampling rate: 100 Hz
+- Variables: Left/right pendulum angular positions (radians)
+- Example trial demonstrating in-phase bimanual coordination at 1.21s period
+
+## Key Findings
+
+| Measure | Value |
+|---------|-------|
+| Circadian temperature range | 36.6°C (05:00) to 37.0°C (17:00) |
+| Peak entropy (05:00) | H(φ) = 5.246 |
+| Minimum entropy (17:00) | H(φ) = 4.544 |
+| Circadian entropy modulation | 15.4% increase at temperature minimum |
+| Heat perturbation amplification | 133% |
+| Cold perturbation amplification | 150% |
+| Temperature-entropy correlation | r = -0.678 |
+
+## Reproducibility
+
+To reproduce all analyses and figures:
+
+```bash
+# Clone the repository
+git clone https://github.com/pcw8531/thermodynamic-motor-control.git
+cd thermodynamic-motor-control
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Open Jupyter Notebook
+jupyter notebook "Entropy Analysis.ipynb"
+```
+
+### Requirements
+- Python 3.8+
+- NumPy
+- Pandas
+- Matplotlib
+- SciPy
+- Jupyter Notebook
+
+## Experimental Protocol
+
+### Participants
+- N = 16 healthy adults (two groups of 8)
+- Group 1: Circadian baseline (Experiment 1)
+- Group 2: Thermal perturbation (Experiments 2 & 3)
+
+### Task
+Bimanual pendulum coordination maintaining in-phase (φ = 0°) pattern at 1.21s period
+
+### Conditions
+- **Normal:** Standard laboratory conditions
+- **Heat Perturbation:** 30-min heat vest application (42-45°C surface)
+- **Cold Perturbation:** 30-min ice vest application (5-10°C surface)
+
+### Measurements
+- Core body temperature: HuBDIC HFS-100 infrared thermometer
+- Movement: DC potentiometers (0.25° resolution) at 100 Hz
+- Entropy: Shannon entropy of phase distribution (π/20 radian bins)
 
 ## Citation
-Park, C. (2025). Thermodynamic Entropy Management in Human Motor Control. 
-Journal of The Royal Society Interface. [DOI pending]
 
-## Data Description
-- `experiment1_circadian.csv`: Entropy values for 8 participants across 4 circadian time points
-- `experiment2_heat.csv`: Normalized entropy under heat perturbation
-- `experiment3_cold.csv`: Normalized entropy under cold perturbation
+If you use this data or code, please cite:
 
-## Analysis Files
-### Main Analysis
-- `Entropy Analysis.ipynb`: Complete analysis pipeline reproducing all manuscript figures and statistics
-
-### Supplementary Analysis
-- `cwa17w1.ipynb`: Prototype implementation of bimanual coordination phase calculations demonstrating the underlying computational methods used in data processing
-- `cwa17w1.txt`: Raw time-series data sample from bimanual pendulum coordination trials showing position data from DC potentiometers
-
-## Code Requirements
-Python 3.8+ with packages listed in requirements.txt
-
-## Usage
-1. To reproduce manuscript results: Open and run `Entropy Analysis.ipynb`
-2. To examine phase calculation methods: See `cwa17w1.ipynb` for detailed computational procedures
-All data is embedded within the notebooks for convenience.
-
-## Repository Contents
-- Main entropy analysis with embedded experimental data
-- Sample bimanual coordination calculation methodology
-- Raw data example from pendulum coordination trials
-- Required package specifications
+```bibtex
+@article{park2025thermodynamic,
+  title={Thermodynamic Entropy Management in Human Motor Control Across Circadian and Thermal Challenges},
+  author={Park, Chulwook},
+  journal={Journal of The Royal Society Interface},
+  year={2025},
+  note={DOI pending}
+}
+```
 
 ## License
-MIT License - See LICENSE file for details
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+**Chulwook Park**  
+Seoul National University  
+Email: pcw8531@snu.ac.kr
+
+## Acknowledgments
+
+This work was supported by the Basic Science Research Program through the National Research Foundation of Korea (NRF), funded by the Ministry of Education (Grant No. 2020R1I1A1A01056967).

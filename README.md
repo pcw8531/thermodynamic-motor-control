@@ -17,22 +17,47 @@ The study provides preliminary evidence that human motor control operates accord
 /thermodynamic-motor-control/
 ├── README.md                        # This file
 ├── LICENSE                          # MIT license
-├── Entropy Analysis.ipynb           # Complete analysis with embedded data
-├── cwa17w1.ipynb                    # Bimanual coordination phase calculations
-├── cwa17w1.txt                      # Sample raw pendulum position data
+├── Analysis.py                      # Complete statistical analysis (all manuscript results)
+├── phase_analysis.py                # Data processing pipeline (phase extraction & entropy)
 ├── experimental_data_complete.csv   # Complete experimental dataset (Tables S1-S3)
+├── cwa17w1.txt                      # Sample raw pendulum position time-series
 ├── requirements.txt                 # Python package dependencies
 └── .gitignore                       # Standard Python gitignore
 ```
 
-## Data Files
+## Analysis Scripts
 
-### Primary Analysis Notebook
-**Entropy Analysis.ipynb** contains the complete analysis pipeline with embedded data:
-- Shannon entropy calculations: H(φ) = -Σ pᵢ log₂ pᵢ
-- Individual participant visualisations across circadian cycles
-- Thermal perturbation response patterns
-- Statistical comparisons and interaction effects
+### Statistical Analysis
+**Analysis.py** reproduces all statistical results reported in the manuscript:
+- Experiment I: Circadian entropy modulation (one-way RM ANOVA)
+- Experiment II: Heat perturbation effects (two-way RM ANOVA)
+- Experiment III: Cold perturbation effects (two-way RM ANOVA)
+- Simple effects decomposition for circadian × temperature interactions
+- Bootstrap confidence intervals (1000 iterations)
+- Post-hoc power analysis results
+- Outlier exclusion sensitivity analysis
+- HKB thermodynamic model simulation
+- Summary tables matching manuscript Tables 3.1, 3.2, and 3.3
+
+```bash
+python Analysis.py
+```
+
+### Phase Analysis Pipeline
+**phase_analysis.py** demonstrates the data processing methodology (Sections 2.5–2.6):
+- Raw pendulum data loading (100 Hz, 3D positional data)
+- Dimensionality reduction via Principal Component Analysis
+- Oscillation peak detection
+- Discrete relative phase computation (Equation 23)
+- Shannon entropy quantification H(φ) = -Σ pᵢ log₂ pᵢ (Equation 24)
+- Coordination stability metrics (Supplement S1.1)
+- Bin size sensitivity analysis
+
+```bash
+python phase_analysis.py
+```
+
+## Data Files
 
 ### Experimental Data
 **experimental_data_complete.csv** provides the complete dataset from all three experiments (576 total observations from 16 participants):
@@ -49,14 +74,14 @@ The study provides preliminary evidence that human motor control operates accord
 | `Note` | Data source reference (Table S1, S2, or S3) |
 
 **Data Summary:**
-- **Experiment 1 (Circadian):** 8 participants × 4 time points × 6 trials = 192 observations with entropy and temperature
-- **Experiment 2 (Heat):** 8 participants × 2 times × 2 conditions × 6 trials = 192 observations (Z-scores)
-- **Experiment 3 (Cold):** 8 participants × 2 times × 2 conditions × 6 trials = 192 observations (Z-scores)
+- **Experiment 1 (Circadian):** 8 participants × 4 time points × 6 trials = 192 observations
+- **Experiment 2 (Heat):** 8 participants × 2 times × 2 conditions × 6 trials = 192 observations
+- **Experiment 3 (Cold):** 8 participants × 2 times × 2 conditions × 6 trials = 192 observations
 
 ### Raw Movement Data
 **cwa17w1.txt** contains sample raw pendulum position time-series:
 - Sampling rate: 100 Hz
-- Variables: Left/right pendulum angular positions (radians)
+- Variables: Left/right pendulum angular positions (3D)
 - Example trial demonstrating in-phase bimanual coordination at 1.21s period
 
 ## Key Findings
@@ -74,7 +99,7 @@ The study provides preliminary evidence that human motor control operates accord
 
 ## Reproducibility
 
-To reproduce all analyses and figures:
+To reproduce all analyses:
 
 ```bash
 # Clone the repository
@@ -84,17 +109,19 @@ cd thermodynamic-motor-control
 # Install dependencies
 pip install -r requirements.txt
 
-# Open Jupyter Notebook
-jupyter notebook "Entropy Analysis.ipynb"
+# Run complete statistical analysis
+python Analysis.py
+
+# Run phase extraction and entropy pipeline
+python phase_analysis.py
 ```
 
 ### Requirements
 - Python 3.8+
 - NumPy
 - Pandas
-- Matplotlib
 - SciPy
-- Jupyter Notebook
+- scikit-learn
 
 ## Experimental Protocol
 

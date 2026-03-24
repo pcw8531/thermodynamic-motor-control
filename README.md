@@ -58,7 +58,7 @@ python phase_analysis.py
 
 ## Contact
 
-**Chulwook Park, Ph.D.** — BK21 Four, Institute of Sport Science, Seoul National University — pcw8531@snu.ac.kr
+**Chulwook Park, Ph.D.** — BK21 Four, Associate Professor, Department of Physical Education, Seoul National University — pcw8531@snu.ac.kr
 
 ## Acknowledgments
 
